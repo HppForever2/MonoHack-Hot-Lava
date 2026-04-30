@@ -4,6 +4,8 @@ Open source mod for the Unity Mono version of Hot Lava.
 
 This is most likely the first and last public version of this project. It contains some minor bugs. If you want them fixed, feel free to do it yourself since the project is open source.
 
+<img width="1143" height="643" alt="Screenshot_44" src="https://github.com/user-attachments/assets/0bd93d46-68ad-4ebc-8f27-4b06cf3ca38f" />
+
 ## What this mod includes
 
 - Movement Recorder
