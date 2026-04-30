@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <LangVersion>10.0</LangVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AF92A02F-60FA-4173-B214-AA469B216108}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hot_Lava_Cheat</RootNamespace>
+    <AssemblyName>Hot Lava Cheat</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <GamePluginsDir>F:\Steam\steamapps\common\Hot Lava\archive\build\BepInEx\plugins\</GamePluginsDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\BepInEx\plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\BepInEx\plugins\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\hotlava_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx, Version=5.4.23.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\BepInEx\plugins\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\hotlava_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\hotlava_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\hotlava_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\hotlava_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\hotlava_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\hotlava_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Steam\steamapps\common\Hot Lava\archive\build\hotlava_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Source\Base.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Core\Binds.cs" />
+    <Compile Include="Source\Core\Config.cs" />
+    <Compile Include="Source\Core\KeybindSystem.cs" />
+    <Compile Include="Source\Core\Main.cs" />
+    <Compile Include="Source\Core\Movement.cs" />
+    <Compile Include="Source\Core\Logger.cs" />
+    <Compile Include="Source\Core\Utils.cs" />
+    <Compile Include="Source\Core\Vars.cs" />
+    <Compile Include="Source\Patches\CardPanel.cs" />
+    <Compile Include="Source\Patches\CharacterStatistic.cs" />
+    <Compile Include="Source\Patches\Currency.cs" />
+    <Compile Include="Source\Patches\CursorIcon.cs" />
+    <Compile Include="Source\Patches\Input.cs" />
+    <Compile Include="Source\Patches\InputManager.cs" />
+    <Compile Include="Source\Patches\Jumper.cs" />
+    <Compile Include="Source\Patches\LevelIntro.cs" />
+    <Compile Include="Source\Patches\MainMenu.cs" />
+    <Compile Include="Source\Patches\MouseLook.cs" />
+    <Compile Include="Source\Patches\OnlineController.cs" />
+    <Compile Include="Source\Patches\PauseMenu.cs" />
+    <Compile Include="Source\Patches\PlayerController.cs" />
+    <Compile Include="Source\Patches\Statistics.cs" />
+    <Compile Include="Source\Patches\SubSplashScreen.cs" />
+    <Compile Include="Source\Patches\UIKeyboard.cs" />
+    <Compile Include="Source\Visuals\GUIManager.cs" />
+    <Compile Include="Source\Visuals\Render\Controls.cs" />
+    <Compile Include="Source\Visuals\Render\Core.cs" />
+    <Compile Include="Source\Visuals\Render\Game.cs" />
+    <Compile Include="Source\Visuals\Render\Helpers.cs" />
+    <Compile Include="Source\Visuals\Render\Tabs.cs" />
+    <Compile Include="Source\Visuals\Render\GUI.cs" />
+    <Compile Include="Source\Visuals\Styles.cs" />
+    <Compile Include="Source\Visuals\Textures.cs" />
+    <Compile Include="Source\Visuals\Themes.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include=".editorconfig" />
+  </ItemGroup>
+  <Target Name="CopyPluginToGame" AfterTargets="Build">
+    <MakeDir Directories="$(GamePluginsDir)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(GamePluginsDir)$(TargetFileName)" OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFiles="$(GamePluginsDir)$(TargetName).pdb" OverwriteReadOnlyFiles="true" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+  </Target>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
