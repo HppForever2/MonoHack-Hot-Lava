@@ -4,19 +4,9 @@ namespace Hot_Lava_Cheat.Source.Patches
     internal class CursorIconPatch
     {
         private const float flBunnyHopBarSize = 0.41f;
-        private static float flPreviousAirControlAlpha = 0f;
-        private static float flPreviousPerfectJumpTime = -1f;
         private static float flRecordedBunnyHopModifier = 0f;
         private static readonly System.Reflection.PropertyInfo piObservedPlayer = HarmonyLib.AccessTools.Property(typeof(Klei.HotLava.Online.State), "ObservedPlayer");
         private static readonly System.Reflection.FieldInfo fiObservedPlayerController = HarmonyLib.AccessTools.Field(typeof(Klei.HotLava.Online.Player), "m_PlayerController");
-
-        [HarmonyLib.HarmonyPatch("Update")]
-        [HarmonyLib.HarmonyPrefix]
-        private static void Update_Prefix(Klei.HotLava.CursorIcon __instance, ref float ___m_PerfectJumpTime)
-        {
-            flPreviousAirControlAlpha = __instance.m_AirControlContainer != null ? __instance.m_AirControlContainer.alpha : 0f;
-            flPreviousPerfectJumpTime = ___m_PerfectJumpTime;
-        }
 
         [HarmonyLib.HarmonyPatch("Update")]
         [HarmonyLib.HarmonyPostfix]
@@ -34,25 +24,6 @@ namespace Hot_Lava_Cheat.Source.Patches
 
             else
                 flRecordedBunnyHopModifier = 0f;
-
-            if (!NS_Core.Movement.Record.IsRecordSlowmotionActive)
-                return;
-
-            float flCompensationMultiplier = NS_Core.Movement.Record.RecordSlowmotionCompensationMultiplier;
-
-            if (flCompensationMultiplier <= 1.001f)
-                return;
-
-            if (__instance.m_AirControlContainer != null)
-            {
-                float flDeltaAlpha = __instance.m_AirControlContainer.alpha - flPreviousAirControlAlpha;
-
-                if (UnityEngine.Mathf.Abs(flDeltaAlpha) > 0.0001f)
-                    __instance.m_AirControlContainer.alpha = UnityEngine.Mathf.Clamp01(flPreviousAirControlAlpha + flDeltaAlpha * flCompensationMultiplier);
-            }
-
-            if (___m_PerfectJumpTime > flPreviousPerfectJumpTime && flPreviousPerfectJumpTime >= 0f)
-                ___m_PerfectJumpTime = flPreviousPerfectJumpTime + (___m_PerfectJumpTime - flPreviousPerfectJumpTime) * flCompensationMultiplier;
         }
 
         private static void ApplyRecordedBunnyHopVisualState(Klei.HotLava.CursorIcon __instance, NS_Core.Movement.Record.Frame frame, ref float ___m_BunnyHopPercent, ref float ___m_BunnyHopBonusPercent, ref float ___m_BunnyHopModifier, ref bool ___m_IconEnabled, ref bool ___m_LeftBarFlash, ref bool ___m_RightBarFlash, ref float ___m_LastTimeBunnyHopping, ref bool ___m_FadingOut)
