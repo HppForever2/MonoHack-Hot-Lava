@@ -316,7 +316,7 @@ namespace HotLava_Cheat.Source.Visuals.Render
 
                 if (bInfoOpen)
                 {
-                    UnityEngine.GUILayout.Label($"{NS_Core.Utils.Lang.GetStr("Version game", "Версия игры")}: {NS_Core.Main.strGameVersion} ({NS_Core.Utils.Lang.GetStr("recommended", "рекомендуется")} 612636 или 477245)", Styles.GS.LabelStyle);
+                    UnityEngine.GUILayout.Label($"{NS_Core.Utils.Lang.GetStr("Version game", "Версия игры")}: {NS_Core.Main.strGameVersion} ({NS_Core.Utils.Lang.GetStr("recommended", "рекомендуется")} 612636, 477245)", Styles.GS.LabelStyle);
                     GUI.Space(4f);
 
                     UnityEngine.GUILayout.Label($"{NS_Core.Utils.Lang.GetStr("Version cheat", "Версия чита")}: {NS_Core.Main.strCheatVersion}", Styles.GS.LabelStyle);
