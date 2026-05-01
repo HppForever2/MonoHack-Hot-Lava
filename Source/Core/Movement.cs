@@ -172,8 +172,6 @@ namespace Hot_Lava_Cheat.Source.Core
             public static int RecordDelayRemainingFrames => UnityEngine.Mathf.Max(0, recordDelayRemainingFrames);
             public static int RecordDelayTotalFrames => UnityEngine.Mathf.Max(0, NS_Core.Vars.sTab.sMR.iRecordDelayFrames);
             public static float RecordSlowmotionScale => 1f - UnityEngine.Mathf.Clamp(NS_Core.Vars.sTab.sMR.flRecordSlowmotion, 0f, 0.70f);
-            public static bool IsRecordSlowmotionActive => (isPreparingRecord || isRecording) && RecordSlowmotionScale < 0.999f;
-            public static float RecordSlowmotionCompensationMultiplier => IsRecordSlowmotionActive ? 1f / UnityEngine.Mathf.Max(RecordSlowmotionScale, 0.0001f) : 1f;
             public static float CurrentRewindSpeed => GetConfiguredRewindSpeed();
             public static int RewindFramesCount => recordedFrames.Count;
             public static UnityEngine.Vector3 RecordStartPosition => recordedFrames.Count > 0 ? recordedFrames[0].position : recordStartPosition;
