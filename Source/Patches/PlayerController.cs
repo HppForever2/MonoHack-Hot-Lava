@@ -4,8 +4,6 @@ namespace Hot_Lava_Cheat.Source.Patches
     internal class PlayerController
     {
         private static int iLastForcedScrollFrame = -1;
-        private static float flPreviousAccumulatedBunnyHop = 0f;
-        private static float flPreviousAccumulatedBunnyHopBonus = 0f;
 
         private static bool IsBhopBindActive()
         {
@@ -133,17 +131,6 @@ namespace Hot_Lava_Cheat.Source.Patches
 
         [HarmonyLib.HarmonyPatch("UpdateMovement")]
         [HarmonyLib.HarmonyPrefix]
-        private static void UpdateMovement_BunnyHopSlowmo_Prefix(Klei.HotLava.Character.PlayerController __instance, ref float ___m_AccumulatedBunnyHop, ref float ___m_AccumulatedBunnyHopBonus)
-        {
-            if (!__instance.IsMine)
-                return;
-
-            flPreviousAccumulatedBunnyHop = ___m_AccumulatedBunnyHop;
-            flPreviousAccumulatedBunnyHopBonus = ___m_AccumulatedBunnyHopBonus;
-        }
-
-        [HarmonyLib.HarmonyPatch("UpdateMovement")]
-        [HarmonyLib.HarmonyPrefix]
         private static void UpdateMovement_Prefix(Klei.HotLava.Character.PlayerController __instance, ref bool ___m_JumpInput, ref bool ___m_IsJumpHeld, ref float ___m_LastJumpPressedTime)
         {
             if (!__instance.IsMine || NS_Visuals.GUIManager.bShowGUI)
@@ -174,26 +161,6 @@ namespace Hot_Lava_Cheat.Source.Patches
         {
             if (!__instance.IsMine || ___movementSettings == null)
                 return;
-
-            if (NS_Core.Movement.Record.IsRecordSlowmotionActive)
-            {
-                float flCompensationMultiplier = NS_Core.Movement.Record.RecordSlowmotionCompensationMultiplier;
-
-                if (flCompensationMultiplier > 1.001f)
-                {
-                    if (___m_AccumulatedBunnyHop > flPreviousAccumulatedBunnyHop)
-                    {
-                        float flDelta = ___m_AccumulatedBunnyHop - flPreviousAccumulatedBunnyHop;
-                        ___m_AccumulatedBunnyHop = UnityEngine.Mathf.Min(___movementSettings.MaxBunnyHop, flPreviousAccumulatedBunnyHop + flDelta * flCompensationMultiplier);
-                    }
-
-                    if (___m_AccumulatedBunnyHopBonus > flPreviousAccumulatedBunnyHopBonus)
-                    {
-                        float flDeltaBonus = ___m_AccumulatedBunnyHopBonus - flPreviousAccumulatedBunnyHopBonus;
-                        ___m_AccumulatedBunnyHopBonus = UnityEngine.Mathf.Min(___movementSettings.MaxBunnyHopBonus, flPreviousAccumulatedBunnyHopBonus + flDeltaBonus * flCompensationMultiplier);
-                    }
-                }
-            }
 
             if (NS_Core.Movement.Record.IsPreparingRecord || NS_Core.Movement.Record.IsPlaying || NS_Core.Movement.Record.IsRewinding)
                 NS_Core.Movement.Record.ApplyRecordedBunnyHopRuntimeState(___movementSettings, ref ___m_AccumulatedBunnyHop, ref ___m_AccumulatedBunnyHopBonus, ref ___m_CurrentHopDirection, ref ___m_BunnyHopModifier, ref ___m_JustJumped);
